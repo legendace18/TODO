@@ -1,8 +1,8 @@
 package com.ace.legend.todo;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class AddTodo extends ActionBarActivity {
 
+    private Toolbar toolBar;
     EditText et_title, et_detail;
     DatabaseHandler db;
 
@@ -20,8 +21,10 @@ public class AddTodo extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_todo);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolBar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         et_title = (EditText) findViewById(R.id.et_title);
         et_detail = (EditText) findViewById(R.id.et_detail);

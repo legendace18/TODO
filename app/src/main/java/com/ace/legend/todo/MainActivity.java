@@ -5,23 +5,23 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.ace.legend.todo.tabs.SlidingTabLayout;
+import com.software.shell.fab.ActionButton;
 
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+public class MainActivity extends ActionBarActivity {
 
-    ActionBar actionBar;
+    private Toolbar toolBar;
+    private SlidingTabLayout tabs;
     ViewPager viewPager;
 
-    public interface FragmentRefreshListener{
-        void refreshFragment();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,52 +31,28 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         viewPager = (ViewPager) findViewById(R.id.pager);
         FragmentManager fm = getSupportFragmentManager();
         viewPager.setAdapter(new MyAdapter(fm));
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
+        toolBar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolBar);
+        tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs.setDistributeEvenly(true);
+        tabs.setCustomTabView(R.layout.custom_tab_view, R.id.tab_text);
+        tabs.setSelectedIndicatorColors(getResources().getColor(R.color.white));
+        tabs.setViewPager(viewPager);
+
+        ActionButton actionButton = (ActionButton) findViewById(R.id.action_button);
+        actionButton.setButtonColor(getResources().getColor(R.color.accentColor));
+        actionButton.setButtonColorPressed(getResources().getColor(R.color.accentColorDark));
+        actionButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_add_white_36dp));
+        actionButton.setImageResource(R.drawable.ic_add_white_36dp);
+
+        actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPageSelected(int pos) {
-                // TODO Auto-generated method stub
-                actionBar.setSelectedNavigationItem(pos);
-
-                MyAdapter adapter = (MyAdapter) viewPager.getAdapter();
-                FragmentRefreshListener frag = (FragmentRefreshListener) adapter.instantiateItem(viewPager, pos);
-                frag.refreshFragment();
-            }
-
-            @Override
-            public void onPageScrolled(int pos, float arg1, int arg2) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int pos) {
-                // TODO Auto-generated method stub
-                if (pos == ViewPager.SCROLL_STATE_IDLE) {
-                    Log.d("Legend.ace18", "scroll state idle");
-                }
-                if (pos == ViewPager.SCROLL_STATE_DRAGGING) {
-                    Log.d("Legend.ace18", "scroll state dragging");
-                }
-                if (pos == ViewPager.SCROLL_STATE_SETTLING) {
-                    Log.d("Legend.ace18", "scroll state settling");
-                }
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddTodo.class);
+                startActivity(intent);
             }
         });
-
-        actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        ActionBar.Tab tab1 = actionBar.newTab();
-        tab1.setText("ToDo");
-        tab1.setTabListener(this);
-        actionBar.addTab(tab1);
-
-        ActionBar.Tab tab2 = actionBar.newTab();
-        tab2.setText("Done");
-        tab2.setTabListener(this);
-        actionBar.addTab(tab2);
-
 
     }
 
@@ -109,34 +85,19 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
 
-    @Override
-    public void onTabReselected(ActionBar.Tab arg0, FragmentTransaction arg1) {
-        // TODO Auto-generated method stub
+    public class MyAdapter extends FragmentPagerAdapter {
 
-    }
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction arg1) {
-        // TODO Auto-generated method stub
-        Log.d("legend.ace18", "" + tab.getPosition());
-        viewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab arg0, FragmentTransaction arg1) {
-        // TODO Auto-generated method stub
-
-    }
-
-    private class MyAdapter extends FragmentPagerAdapter {
+        String[] tabs;
 
         public MyAdapter(FragmentManager fm) {
             super(fm);
             // TODO Auto-generated constructor stub
+            tabs = getResources().getStringArray(R.array.tabs);
         }
 
         @Override
         public Fragment getItem(int i) {
+
             Fragment fragment = null;
             switch (i) {
                 case 0:
@@ -150,6 +111,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             return fragment;
         }
 
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabs[position];
+        }
 
         @Override
         public int getCount() {

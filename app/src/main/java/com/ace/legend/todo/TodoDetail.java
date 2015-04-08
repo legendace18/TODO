@@ -10,23 +10,27 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.software.shell.fab.ActionButton;
 
 import java.util.Calendar;
 
 
 public class TodoDetail extends ActionBarActivity {
 
+    private Toolbar toolBar;
     AlarmManager alarmManager;
     EditText et_title, et_detail;
     TextView tv_remainder;
@@ -45,8 +49,10 @@ public class TodoDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todo_detail);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolBar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NotificationManager notificationManager = (NotificationManager) this
                 .getSystemService(Context.NOTIFICATION_SERVICE);
@@ -95,11 +101,12 @@ public class TodoDetail extends ActionBarActivity {
         pi = PendingIntent.getBroadcast(this, reqCode, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
+        RelativeLayout rl_remainder = (RelativeLayout) findViewById(R.id.rl_remainder);
         tv_remainder = (TextView) findViewById(R.id.tv_remainder);
         if (date != null && time != null) {
             tv_remainder.setText(date + " " + time);
         }
-        tv_remainder.setOnClickListener(new View.OnClickListener() {
+        rl_remainder.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -157,6 +164,23 @@ public class TodoDetail extends ActionBarActivity {
             }
         });
 
+        ActionButton actionButton = (ActionButton) findViewById(R.id.action_button);
+        actionButton.setButtonColor(getResources().getColor(R.color.accentColor));
+        actionButton.setButtonColorPressed(getResources().getColor(R.color.accentColorDark));
+        actionButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_assignment_turned_in_white_24dp));
+        actionButton.setImageResource(R.drawable.ic_assignment_turned_in_white_24dp);
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int num = db.shiftTodo(new ToDo(title, detail));
+                if (num == 1) {
+                    alarmManager.cancel(pi);
+                    Toast.makeText(TodoDetail.this, "ToDo completed.", Toast.LENGTH_LONG)
+                            .show();
+                    finish();
+                }
+            }
+        });
     }
 
     @Override
@@ -207,20 +231,10 @@ public class TodoDetail extends ActionBarActivity {
 
                 return true;
 
-            case R.id.action_new_todo:
+
+            case R.id.action_add:
                 Intent intent = new Intent(this, AddTodo.class);
                 startActivity(intent);
-                finish();
-                return true;
-
-            case R.id.action_shift:
-                int num = db.shiftTodo(new ToDo(title, detail));
-                if (num == 1) {
-                    alarmManager.cancel(pi);
-                    Toast.makeText(this, "ToDo completed.", Toast.LENGTH_LONG)
-                            .show();
-                    finish();
-                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

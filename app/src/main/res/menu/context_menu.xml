@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_open"
+        android:title="@string/action_open"
+        android:orderInCategory="98"/>
+    <item
+        android:id="@+id/action_discard"
+        android:title="@string/action_discard"
+        android:orderInCategory="99"/>
+    <item
+        android:id="@+id/action_shift"
+        android:title="@string/action_completed"
+        android:orderInCategory="100"/>
+
+</menu>

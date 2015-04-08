@@ -15,5 +15,11 @@
     <string name="action_shift">Shift</string>
     <string name="action_refresh">Refresh</string>
     <string name="title_activity_done_detail">Done Detail</string>
+    <string name="action_open">Open</string>
+    <string name="action_completed">Task completed</string>
+    <string-array name="tabs">
+        <item>TODO</item>
+        <item>DONE</item>
+    </string-array>
 
 </resources>

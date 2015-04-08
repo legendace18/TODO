@@ -1,26 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context="com.ace.legend.todo.TodoDetail">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
     <item
-        android:id="@+id/action_new_todo"
+        android:id="@+id/action_add"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_new"
+        android:icon="@drawable/ic_add_white_24dp"
         android:title="@string/action_new_todo"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_discard"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_discard"
+        android:icon="@drawable/ic_delete_white_24dp"
         android:title="@string/action_discard"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_shift"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_action_forward_holo"
-        android:title="@string/action_shift"
-        app:showAsAction="always"/>
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+
 </menu>

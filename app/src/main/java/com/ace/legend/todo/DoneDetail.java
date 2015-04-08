@@ -4,16 +4,20 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.software.shell.fab.ActionButton;
 
 
 public class DoneDetail extends ActionBarActivity {
 
+    private Toolbar toolBar;
     TextView tv_title, tv_detail;
     String title, detail;
     DatabaseHandler db;
@@ -23,8 +27,10 @@ public class DoneDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.done_detail);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolBar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         db = new DatabaseHandler(this);
 
@@ -37,6 +43,23 @@ public class DoneDetail extends ActionBarActivity {
 
         tv_title.setText(title);
         tv_detail.setText(detail);
+
+        ActionButton actionButton = (ActionButton) findViewById(R.id.action_button);
+        actionButton.setButtonColor(getResources().getColor(R.color.accentColor));
+        actionButton.setButtonColorPressed(getResources().getColor(R.color.accentColorDark));
+        actionButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_assignment_white_24dp));
+        actionButton.setImageResource(R.drawable.ic_assignment_white_24dp);
+
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int num = db.shiftDone(new ToDo(title, detail));
+                if(num == 1){
+                    Toast.makeText(DoneDetail.this, "ToDo not completed.", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+        });
     }
 
     @Override
@@ -85,18 +108,9 @@ public class DoneDetail extends ActionBarActivity {
                 alert.show();
                 return true;
 
-            case R.id.action_new_todo:
+            case R.id.action_add:
                 Intent intent = new Intent(this, AddTodo.class);
                 startActivity(intent);
-                finish();
-                return true;
-
-            case R.id.action_shift:
-                int num = db.shiftDone(new ToDo(title, detail));
-                if(num == 1){
-                    Toast.makeText(this, "ToDo not completed.", Toast.LENGTH_LONG).show();
-                    finish();
-                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

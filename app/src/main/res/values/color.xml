@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="asbestos">#7f8c8d</color>
-    <color name="light_blue">#9ECEEE</color>
-    <color name="white">#FFFFFF</color>
-    <color name="yellow">#FFFF00</color>
-    <color name="fuchsia">#FF00FF</color>
-    <color name="red">#FF0000</color>
-    <color name="silver">#C0C0C0</color>
-    <color name="gray">#808080</color>
-    <color name="olive">#808000</color>
-    <color name="purple">#800080</color>
-    <color name="maroon">#800000</color>
-    <color name="aqua">#00FFFF</color>
-    <color name="lime">#00FF00</color>
-    <color name="teal">#008080</color>
-    <color name="green">#008000</color>
-    <color name="blue">#3498db</color>
-    <color name="navy">#000080</color>
-    <color name="black">#000000</color>
+    <color name="primaryColor">#00BCD4</color>
+    <color name="primaryColorDark">#0097A7</color>
+    <color name="accentColor">#607D8B</color>
+    <color name="accentColorDark">#8aa2ae</color>
+    <color name="colorHighlight">#B2EBF2</color>
+    <color name="white">#fff</color>
+    <color name="tabColor">#e5e5e5</color>
 
 </resources>
