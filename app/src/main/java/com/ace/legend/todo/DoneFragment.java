@@ -4,7 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +22,7 @@ import com.ace.legend.todo.tabs.SlidingTabLayout;
 import java.util.ArrayList;
 
 
-public class DoneFragment extends ListFragment implements SlidingTabLayout.FragmentRefreshListener {
+public class DoneFragment extends Fragment implements SlidingTabLayout.FragmentRefreshListener {
     DatabaseHandler db;
     ArrayList<ToDo> todoList;
     private DoneAdapter adapter;
@@ -40,6 +40,7 @@ public class DoneFragment extends ListFragment implements SlidingTabLayout.Fragm
         setHasOptionsMenu(true);
         db = new DatabaseHandler(getActivity());
         todoList = new ArrayList<>();
+        lv = (ListView) layout.findViewById(R.id.lv_done);
         return layout;
     }
 
@@ -49,7 +50,7 @@ public class DoneFragment extends ListFragment implements SlidingTabLayout.Fragm
         super.onActivityCreated(savedInstanceState);
 
         displayList();
-        lv = getListView();
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,7 +68,7 @@ public class DoneFragment extends ListFragment implements SlidingTabLayout.Fragm
     public void displayList() {
         todoList = db.getDone();
         adapter = new DoneAdapter(getActivity(), todoList);
-        setListAdapter(adapter);
+        lv.setAdapter(adapter);
     }
 
 

@@ -32,6 +32,12 @@ public class MainActivity extends ActionBarActivity {
         FragmentManager fm = getSupportFragmentManager();
         viewPager.setAdapter(new MyAdapter(fm));
 
+        initializeView();
+        setFab();
+
+    }
+
+    private void initializeView() {
         toolBar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolBar);
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
@@ -39,7 +45,9 @@ public class MainActivity extends ActionBarActivity {
         tabs.setCustomTabView(R.layout.custom_tab_view, R.id.tab_text);
         tabs.setSelectedIndicatorColors(getResources().getColor(R.color.white));
         tabs.setViewPager(viewPager);
+    }
 
+    private void setFab() {
         ActionButton actionButton = (ActionButton) findViewById(R.id.action_button);
         actionButton.setButtonColor(getResources().getColor(R.color.accentColor));
         actionButton.setButtonColorPressed(getResources().getColor(R.color.accentColorDark));
@@ -53,7 +61,6 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override

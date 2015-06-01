@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context="com.ace.legend.todo.AddTodo">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item
+   <!-- <item
         android:id="@+id/action_cancel"
         android:orderInCategory="100"
         android:title="@string/action_cancel"
@@ -13,5 +13,5 @@
         android:id="@+id/action_done"
         android:orderInCategory="100"
         android:title="@string/action_done"
-        app:showAsAction="always"/>
+        app:showAsAction="always"/>-->
 </menu>

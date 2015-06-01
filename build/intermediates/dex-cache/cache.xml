@@ -2,11 +2,25 @@
 <items version="2" >
 
     <item
+        jar="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="aa416efe9dd2717f8eb55b1f5d9903bc7f9f663a">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/classes-a1c71a91df66915fa9c64bf0564c1246e5b5770d.jar" />
+    </item>
+    <item
         jar="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
         <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/debug/classes-04353081e5aefd2f8ef7bdaaadb52a75ac7e4d6a.jar" />
+    </item>
+    <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/junit/junit-dep/4.10/64417b3bafdecd366afa514bd5beeae6c1f85ece/junit-dep-4.10.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="64417b3bafdecd366afa514bd5beeae6c1f85ece">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/junit-dep-4.10-afac1bf9e3d1b4b9598697cd7bd50aeff1a45126.jar" />
     </item>
     <item
         jar="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/classes.jar"
@@ -30,11 +44,88 @@
         <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/debug/classes-fe0c7f10b891e8a79eb8eaea162aaf3ec0e6c8b5.jar" />
     </item>
     <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/javawriter-2.1.1-50aca3bb34944f8af544de62f093dac52441a35a.jar" />
+    </item>
+    <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/javax.inject-1-2dd76eae697a3c771d25bf101bea2736bc8e7d75.jar" />
+    </item>
+    <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/jsr305-2.0.1-4690ee753ee36da43e2ff7da9981f05f0a145e79.jar" />
+    </item>
+    <item
+        jar="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-core/2.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="29d14c552f643eae0255ba38f93c0b968fd092c4">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/classes-63ce7ef58d92ab4f29ed08252dbde0ccfd5cd548.jar" />
+    </item>
+    <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.1/8d47177aa4da0f259fc823a39736bad2f09993d5/hamcrest-integration-1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8d47177aa4da0f259fc823a39736bad2f09993d5">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-integration-1.1-1de35a41dde89060d446145b0f0fccaf3b0dfab1.jar" />
+    </item>
+    <item
+        jar="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3a764c7aef5be3d7b138eabf0334ccadf889fcbd">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/classes-f5b5124a945ccba4c6149527d6b3f39736ad9cab.jar" />
+    </item>
+    <item
+        jar="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7cc1fbd6049001f7bb694f360cc1aad53d0128b6">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/classes-7e8aed560ead07a0474a80ef022f58dd655d86aa.jar" />
+    </item>
+    <item
+        jar="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="28db0e59551f4468fd53106e1cb13beaf636007b">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/classes-7b374dfacd4b153c40480c535f64063befbfd9cd.jar" />
+    </item>
+    <item
         jar="/home/rohan/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
         <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-302e56bf42cf13df07b30e2d6969c8bda09ef180.jar" />
+    </item>
+    <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="860340562250678d1a344907ac75754e259cdb14">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-core-1.1-c4099e126eeedd4ffa5ba0541b07b5104051196d.jar" />
+    </item>
+    <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.1/b988c01468e3398d46678a2eb48aeb5bde271e9f/hamcrest-library-1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b988c01468e3398d46678a2eb48aeb5bde271e9f">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-library-1.1-862e3b017b0e9c812f7cfd42dca87b63e20c844c.jar" />
+    </item>
+    <item
+        jar="/home/rohan/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="/home/rohan/AndroidStudioProjects/TODO/app/build/intermediates/pre-dexed/androidTest/debug/javax.annotation-api-1.2-635af05a41d55a766643835185af26f862176b10.jar" />
     </item>
 
 </items>

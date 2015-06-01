@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class DoneDetail extends ActionBarActivity {
 
     private Toolbar toolBar;
     TextView tv_title, tv_detail;
+    ImageButton ibtn_update;
     String title, detail;
     DatabaseHandler db;
 
@@ -27,23 +29,34 @@ public class DoneDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.done_detail);
 
-        toolBar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolBar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         db = new DatabaseHandler(this);
+
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_detail = (TextView) findViewById(R.id.tv_detail);
+        ibtn_update = (ImageButton) findViewById(R.id.ibtn_updateTodo);
+
+        initializeView();
+        setFab();
 
         Intent i = getIntent();
         title = i.getStringExtra("title");
         detail = i.getStringExtra("detail");
 
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_detail = (TextView) findViewById(R.id.tv_detail);
-
         tv_title.setText(title);
         tv_detail.setText(detail);
 
+    }
+
+    private void initializeView() {
+        toolBar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ibtn_update.setVisibility(View.GONE);
+    }
+
+    private void setFab(){
         ActionButton actionButton = (ActionButton) findViewById(R.id.action_button);
         actionButton.setButtonColor(getResources().getColor(R.color.accentColor));
         actionButton.setButtonColorPressed(getResources().getColor(R.color.accentColorDark));
@@ -60,6 +73,47 @@ public class DoneDetail extends ActionBarActivity {
                 }
             }
         });
+    }
+
+    public void handleClick(View v){
+        int id = v.getId();
+        switch(id){
+            case R.id.ibtn_newTodo:
+                Intent intent = new Intent(this, AddTodo.class);
+                startActivity(intent);
+                break;
+
+            case R.id.ibtn_deleteTodo:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Delete ToDo");
+                builder.setMessage("Do you want delete the task?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int pos) {
+                                int count = db.deleteTodo(new ToDo(title, detail));
+                                if (count == 1) {
+                                    Toast.makeText(DoneDetail.this, "ToDo deleted.",
+                                            Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                            }
+                        });
+                builder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+                break;
+        }
     }
 
     @Override

@@ -49,16 +49,20 @@ public class TodoDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todo_detail);
 
-        toolBar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolBar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        et_title = (EditText) findViewById(R.id.et_title);
+        et_detail = (EditText) findViewById(R.id.et_detail);
+        btn_save = (Button) findViewById(R.id.btn_save);
+
+        initializeView();
+        setFab();
 
         NotificationManager notificationManager = (NotificationManager) this
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
 
         db = new DatabaseHandler(this);
+        preferences = getPreferences(MODE_PRIVATE);
+
         Intent i = getIntent();
         title = i.getStringExtra("title");
         detail = i.getStringExtra("detail");
@@ -66,11 +70,6 @@ public class TodoDetail extends ActionBarActivity {
         time = i.getStringExtra("time");
         reqCode = i.getIntExtra("RequestCode", 0);
 
-        preferences = getPreferences(MODE_PRIVATE);
-
-        et_title = (EditText) findViewById(R.id.et_title);
-        et_detail = (EditText) findViewById(R.id.et_detail);
-        btn_save = (Button) findViewById(R.id.btn_save);
 
         et_title.setText(title);
         et_detail.setText(detail);
@@ -164,6 +163,16 @@ public class TodoDetail extends ActionBarActivity {
             }
         });
 
+    }
+
+    private void initializeView() {
+        toolBar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setFab() {
         ActionButton actionButton = (ActionButton) findViewById(R.id.action_button);
         actionButton.setButtonColor(getResources().getColor(R.color.accentColor));
         actionButton.setButtonColorPressed(getResources().getColor(R.color.accentColorDark));
@@ -181,6 +190,49 @@ public class TodoDetail extends ActionBarActivity {
                 }
             }
         });
+    }
+
+    public void handleClick(View v){
+        int id = v.getId();
+        switch(id){
+            case R.id.ibtn_newTodo:
+                Intent intent = new Intent(this, AddTodo.class);
+                startActivity(intent);
+                break;
+            case R.id.ibtn_deleteTodo:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Delete ToDo");
+                builder.setMessage("Do you want to delete the task?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int pos) {
+                                int count = db.deleteTodo(new ToDo(title, detail));
+                                if (count == 1) {
+                                    alarmManager.cancel(pi);
+                                    Toast.makeText(TodoDetail.this, "ToDo deleted.",
+                                            Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                            }
+                        });
+                builder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+                break;
+            case R.id.ibtn_updateTodo:
+                break;
+        }
     }
 
     @Override

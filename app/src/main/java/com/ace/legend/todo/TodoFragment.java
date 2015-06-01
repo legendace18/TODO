@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,7 +25,7 @@ import com.ace.legend.todo.tabs.SlidingTabLayout;
 import java.util.ArrayList;
 
 
-public class TodoFragment extends ListFragment implements SlidingTabLayout.FragmentRefreshListener{
+public class TodoFragment extends Fragment implements SlidingTabLayout.FragmentRefreshListener{
     DatabaseHandler db;
     ArrayList<ToDo> todoList;
     TodoAdapter adapter;
@@ -44,7 +44,7 @@ public class TodoFragment extends ListFragment implements SlidingTabLayout.Fragm
 
         db = new DatabaseHandler(getActivity());
         todoList = new ArrayList<>();
-
+        lv = (ListView) layout.findViewById(R.id.lv_todo);
         return layout;
     }
 
@@ -53,7 +53,6 @@ public class TodoFragment extends ListFragment implements SlidingTabLayout.Fragm
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
         displayList();
-        lv = getListView();
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -74,7 +73,7 @@ public class TodoFragment extends ListFragment implements SlidingTabLayout.Fragm
     public void displayList() {
         todoList = db.getTodo();
         adapter = new TodoAdapter(getActivity(), todoList);
-        setListAdapter(adapter);
+        lv.setAdapter(adapter);
     }
 
     @Override
@@ -114,15 +113,14 @@ public class TodoFragment extends ListFragment implements SlidingTabLayout.Fragm
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int position = info.position;
-        final ToDo todo = todoList.get(position);
         Intent intent = new Intent(getActivity(), AlarmReceiver.class);
         final AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         final PendingIntent pi = PendingIntent.getBroadcast(getActivity(), position, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         if(getUserVisibleHint()) {
-
-           int id = item.getItemId();
+            final ToDo todo = todoList.get(position);
+            int id = item.getItemId();
             switch (id) {
                 case 1:
                     Intent i = new Intent(getActivity(), TodoDetail.class);

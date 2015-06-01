@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@color/primaryColor"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/ibtn_newTodo"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_btn"
+        android:src="@drawable/ic_add_white_24dp"
+        android:onClick="handleClick"/>
+
+    <ImageButton
+        android:id="@+id/ibtn_deleteTodo"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_btn"
+        android:src="@drawable/ic_delete_white_24dp"
+        android:onClick="handleClick"/>
+
+    <ImageButton
+        android:id="@+id/ibtn_updateTodo"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_btn"
+        android:src="@drawable/ic_add_circle_grey600_24dp"
+        android:onClick="handleClick"
+        android:visibility="visible"/>
+
+</LinearLayout>

@@ -38,6 +38,10 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <include
+        layout="@layout/bottom_bar"/>
+
     <com.software.shell.fab.ActionButton
         android:id="@+id/action_button"
         android:layout_width="wrap_content"
@@ -45,6 +49,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginBottom="25dp"
         />
+
 </RelativeLayout>
